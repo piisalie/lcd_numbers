@@ -34,7 +34,10 @@ describe LCDNumber do
   end
 
   it "it renders each digit correctly" do
-    one = "    \n   |\n    \n   |\n    "
-    expect(LCDNumber.new("1", 1)).to eq(one)
+    LCDNumber::DIGITS.each_with_index do |lines, n|
+      expect(LCDNumber.new(n.to_s, 1).to_lcd).to eq(lines.join("\n"))
+    end
   end
+
+  it "there is exactly one space between digits"
 end

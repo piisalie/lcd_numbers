@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+$VERBOSE = true
+
+require_relative "../lib/lcd_number"
+
+size = 2
+if ARGV.first == "-s"
+  ARGV.shift
+  size = ARGV.shift.to_i
+end
+
+puts LCDNumber.new(ARGV.shift, size).to_lcd

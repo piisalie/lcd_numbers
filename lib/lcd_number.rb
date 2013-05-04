@@ -1,13 +1,12 @@
 class LCDNumber
   def initialize(number)
-    @number = number
+    @digits = number
+    @size   = 2
   end
+  attr_reader :digits, :size
 
   def to_lcd
-    ([@number] * (size * 2 + 3)).join("\n")
+    ([@digits] * (size * 2 + 3)).join("\s#{"-"*@size}\s\n")
   end
 
-  def size
-    2
-  end
 end

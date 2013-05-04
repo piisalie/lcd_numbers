@@ -4,7 +4,7 @@ class LCDNumber
   end
 
   def to_lcd
-    ([@number] * 5).join("\n")
+    ([@number] * (size * 2 + 3)).join("\n")
   end
 
   def size

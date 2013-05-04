@@ -1,7 +1,7 @@
 require_relative "../lib/lcd_number"
 
 describe LCDNumber do
-  let(:number) { LCDNumber.new("23") }
+  let(:number) { LCDNumber.new("23", 4) }
 
   it "outputs each digit provided going across" do
     small = LCDNumber.new("1")
@@ -20,5 +20,9 @@ describe LCDNumber do
   it "adjusts horizontal bars for the size" do
     expect(number.digits).to match(/[02-9]/)
     expect(number.to_lcd).to match(/\s-{#{number.size}}\s/)
+  end
+
+  it "changes size based on user input" do
+    expect(number.size).to eq(4)
   end
 end

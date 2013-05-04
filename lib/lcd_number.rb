@@ -4,6 +4,6 @@ class LCDNumber
   end
 
   def to_lcd
-    return @number
+    ([@number] * 5).join("\n")
   end
 end

@@ -1,7 +1,7 @@
 require_relative "../lib/lcd_number"
 
 describe LCDNumber do
-  let(:number) { LCDNumber.new("23", 4) }
+  let(:number) { LCDNumber.new("23", rand(1..10)) }
 
   it "outputs each digit provided going across" do
     small = LCDNumber.new("1")
@@ -10,7 +10,11 @@ describe LCDNumber do
   end
 
   it "defaults to a size of 2" do
-    expect(number.size).to eq(2)
+    expect(LCDNumber.new("42").size).to eq(2)
+  end
+
+  it "changes size based on user input" do
+    expect(LCDNumber.new("42", 4).size).to eq(4)
   end
 
   it "the number of lines returned is described by the size" do
@@ -22,7 +26,10 @@ describe LCDNumber do
     expect(number.to_lcd).to match(/\s-{#{number.size}}\s/)
   end
 
-  it "changes size based on user input" do
-    expect(number.size).to eq(4)
+  it "adjucts vertical bars for the size" do
+    output  = number.to_lcd
+    aoa     = output.lines.map { |line| line.chomp.chars.to_a }
+    flipped = aoa.transpose.map { |line| line.join }.join("\n")
+    expect(flipped).to match(/\s\|{#{number.size}}\s/)
   end
 end

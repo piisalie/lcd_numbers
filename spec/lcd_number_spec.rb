@@ -11,4 +11,9 @@ describe LCDNumber do
     number = LCDNumber.new("23")
     expect(number.to_lcd.lines.to_a.size).to be >= 5
   end
+
+  it "defaults to a size of 2" do
+    number = LCDNumber.new("23")
+    expect(number.size).to eq(2)
+  end
 end

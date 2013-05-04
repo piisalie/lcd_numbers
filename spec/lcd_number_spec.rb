@@ -26,10 +26,15 @@ describe LCDNumber do
     expect(number.to_lcd).to match(/\s-{#{number.size}}\s/)
   end
 
-  it "adjucts vertical bars for the size" do
+  it "adjusts vertical bars for the size" do
     output  = number.to_lcd
     aoa     = output.lines.map { |line| line.chomp.chars.to_a }
     flipped = aoa.transpose.map { |line| line.join }.join("\n")
     expect(flipped).to match(/\s\|{#{number.size}}\s/)
+  end
+
+  it "it renders each digit correctly" do
+    one = "    \n   |\n    \n   |\n    "
+    expect(LCDNumber.new("1", 1)).to eq(one)
   end
 end
